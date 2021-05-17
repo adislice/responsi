@@ -1,0 +1,13 @@
+{
+    "name": "adi/responsi",
+    "description": "Responsi Mata Kuliah Pemrograman Web",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "R. Adi Permana",
+            "email": "radipermana29@gmail.com"
+        }
+    ],
+    "require": {}
+}
