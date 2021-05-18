@@ -40,7 +40,8 @@ if (isset($_POST['search'])) {
 				<th>Nama</th>
 				<th>Alamat</th>
 				<th>Jabatan</th>
-				<th>Foto</th>";
+				<th>Foto</th>
+				<th>Action</th>";
 		while($data = mysqli_fetch_assoc($result)){
 			$foto = $data['foto_path'];
 			echo "<tr>";
@@ -49,6 +50,7 @@ if (isset($_POST['search'])) {
 			echo "<td>" . $data['alamat'] . "</td>";
 			echo "<td>" . $data['nama_jabatan'] . "</td>";
 			echo "<td style=\"text-align:center\"><img class=\"img-modal\"src='" . $foto . "'></img></td>";
+			echo "<td><span class=\"btn\" id='del_" . $data['id_pegawai'] . "'>&times;</span>";
 			echo "</tr>";
 
 		}
@@ -63,8 +65,44 @@ if (isset($_POST['search'])) {
 			<div id="caption"></div>
 		</div>
 		</div>
+		<div class="confirm-dialog" id="confirm-delete">
+			<div id="confirm-modal">
+				<div class="confirm-body">
+					<div class="confirm-text">Anda Yakin?</div>
+				</div>
+				<div class="confirm-button">
+					<div class="yes"><a id="link" href="#">YES</a></div>
+					<div class="no" id="cancel">NO</div>
+				</div>
+			</div>
+		</div>
 	</section>
 
 </body>
 <script src="js/main.js"></script>
+<script type="text/javascript">
+	var btn = document.getElementsByClassName("btn");
+	var confirm = document.getElementById("confirm-delete");
+	var link = document.getElementById("link");
+
+	for (var i = 0; i < btn.length; i++) {
+		var button = btn[i];
+
+		button.onclick = function (evt) {
+			confirm.style.display = "flex";
+			var btn_id = this.id;
+			var data_id = btn_id.split("_")[1];
+			link.href = "delete_process.php?id="+data_id;
+		}
+		
+	}
+
+	btn.onclick = function(evt) {
+		confirm.style.display = "flex";
+	}
+	var cancel = document.getElementById("cancel");
+	cancel.onclick = function (evt) {
+		confirm.style.display = "none";
+	}
+</script>
 </html>

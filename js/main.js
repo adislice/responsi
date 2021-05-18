@@ -7,9 +7,9 @@ var captionText = document.getElementById('caption');
 for (var i = 0; i < images.length; i++) {
   var img = images[i];
   img.onclick = function(evt) {
-    modal.style.display = "block";
+    modal.style.display = "flex";
     modalImg.src = this.src;
-    captionText.innerHTML = this.alt;
+    captionText.innerHTML = this.src;
 
   }
 }

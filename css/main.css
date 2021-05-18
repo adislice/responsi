@@ -162,6 +162,7 @@ p {
 	background-color: rgba(0,0,0,0.9);
 	animation-name: fade;
 	animation-duration: 0.5s;
+	flex-direction: column;
 }
 
 @keyframes fade {
@@ -172,7 +173,6 @@ p {
 .modal-content {
 	margin: auto;
 	display: block;
-	width: 80%;
 	max-width: 700px;
 }
 
@@ -223,4 +223,102 @@ p {
 	.modal-content {
 		width: 100%;
 	}
+}
+
+.btn {
+	font-size: 35px;
+	font-weight: bold;
+	font-family: 'Arial';
+	text-decoration: none;
+}
+.btn:hover {
+	color: #0000002e;
+	cursor: pointer;
+}
+#confirm-modal {
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+	width: 300px;
+	height: 150px;
+	border : 1px solid #0000002e;
+	font-family: 'Arial';
+	border-radius: 10px;
+	box-shadow: 0 10px 20px rgb(0 0 0 / 12%), 0 1px 30px rgb(0 0 0 / 24%);
+	background-color: white;
+}
+.confirm-body {
+	flex-basis: 60%;
+}
+.confirm-button {
+	flex-basis: 40%;
+}
+.confirm-body {
+	display: flex;
+	text-align: center;
+}
+.confirm-text {
+	align-self: center;
+	flex-basis: 100%;
+	font-size: 20px;
+	font-weight: bold;
+}
+.confirm-button {
+	display: flex;
+	height: 30px;
+	border-top: 1px solid #0000002e;
+}
+.confirm-button .yes, 
+.confirm-button .no {
+	display: flex;
+	height: 100%;
+	flex-basis: 100%;
+	text-align: center;
+	align-self: center;
+	transition:  .5s ease;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.confirm-button .yes {
+	border-right: 1px solid #0000002e;
+} 
+.confirm-button .yes:hover,
+.confirm-button .no:hover {
+	background-color: lightgray;
+	border-color: lightgray;
+}
+.confirm-button .no:hover {
+	cursor: pointer;
+}
+.confirm-button p, 
+.confirm-button a {
+	margin: auto;
+	display: block;
+	width: 100%;
+	padding: 20px 0;
+}
+
+.confirm-dialog {
+	height: 100%;
+	width: 100%;
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	animation-name: conf;
+	animation-duration: 0.3s;
+}
+@keyframes conf {
+	0% {transform:scale(0.5);opacity:0;}
+	30% {opacity: 1}
+	100% {transform:scale(1)}
+}
+.delete-button {
+	font-size: 35px;
+	font-weight: bold;
+	font-family: 'Arial';
+}
+#link {
+	text-decoration: none;
 }

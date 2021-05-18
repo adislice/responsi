@@ -5,7 +5,7 @@ include 'utils.php';
 session_start();
 
 if (isset($_SESSION['result']) || !empty($_SESSION['result'])) {
-	if ($_SESSION['result'] == "failed") {
+	if ($_SESSION['result'] == "ok") {
 		alert($_SESSION['result_msg']);
 	}
 	session_destroy();

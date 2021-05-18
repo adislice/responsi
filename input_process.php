@@ -13,7 +13,7 @@ $conn = new KoneksiDB("root","");
 $connection = $conn->getConnection();
 if (!$connection) {
 	$res_msg = "Kesalahan Server!";
-	goto fail;
+	goto out;
 }
 
 if (isset($_POST['submit'])) {
@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
 
 	if (mysqli_num_rows($result_nik) > 0) {
 		$res_msg = "Data dengan NIK " . $NIK . "sudah ada!";
-		goto fail;
+		goto out;
 	}
 
 	if(!empty($_FILES['foto']['name'])) {
@@ -43,14 +43,14 @@ if (isset($_POST['submit'])) {
 				$fname = 'images/pp_' . $NIK . '.' . $ext;
 				if (!move_uploaded_file($_FILES['foto']['tmp_name'], $fname)) {
 					$res_msg = "Gagal mengunggah file!";
-					goto fail;
+					goto out;
 				}
 				$foto_path = $fname;
 			}
 		} catch (Exception $e) {
 			echo 'Caught exception: ',  $e->getMessage(), "\n";
 			$res_msg = "Gagal mengunggah file! Reason : " . $e->getMessage();
-			goto fail;
+			goto out;
 		}	
 	} else {
 		$foto_path = "";
@@ -68,18 +68,14 @@ if (isset($_POST['submit'])) {
 	$result = mysqli_query($connection, $query);
 
 	if(!$result){
-		$ret = "failed";
 		$res_msg = "Gagal memasukkan data! " . mysqli_errno($connection) . " - " . mysqli_error($connection);
-		goto fail;
 	}
+	$res_msg = "Input data berhasil!";
 
 }
 
-$ret = "success";
-$res_msg = "Input data berhasil!";
-
-fail:
-$ret = "failed";
+out:
+$ret = "ok";
 $_SESSION['result'] = $ret;
 $_SESSION['result_msg'] = $res_msg;
 
